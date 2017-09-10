@@ -1,21 +1,49 @@
-var express = require("express")
-var app = express()
+'use strict'
 
-var bodyParser = require('body-parser')
-//var request = require('request')
-//var config = require('./config');
+const express = require('express')
+const bodyParser = require('body-parser')
 
-var port = process.env.PORT || 3002
+const axios = require('axios')
+const config = require('./config')
 
-//app.use(bodyParser.urlencoded({ extended : false }))
-//app.use(bodyParser.json())
+const app = express()
+const port = process.env.PORT || 3002
 
-app.get("/" , function(req , res){
-  res.send("Hello from nodejs and express");
+app.use(bodyParser.urlencoded({ extended : false }))
+app.use(bodyParser.json())
+
+//geolocationByAddresss
+app.get('/api/geolocationByAddresss/:address' , (req, res) => {
+  let result = {
+    data : [],
+    error : ''
+  }
+  let url = config.servicesInfo.google.geocodingAPI
+
+  axios(url , {
+    params : {
+      address : 'Kr 19 #1036, Bogotá, Colombia',
+      key : config.servicesInfo.google.apiKey
+    }
+  })
+  .then(function(response){
+      result.data = response.data
+      console.log("Get response: " +  result.data)
+      return res.status(200).send(result)
+
+  })
+  .catch(function(error){
+      console.log(response);
+      result.error = error
+      return res.status(404).send(result)
+  })
+})
+//geolocationByAddresss
+
+app.get('/api/hola' , (req, res) => {
+  res.status(200).send({message : 'ok'})
 })
 
-console.log("web application opened")
-//app.listen(process.env.PORT || 3003);
 
 app.listen(port, () => {
   console.log(`API REST running in http://localhost:${port}`)
