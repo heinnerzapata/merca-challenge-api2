@@ -1,6 +1,6 @@
 'use strict'
 
-const express = require('express')
+const express = require('express');
 //const bodyParser = require('body-parser')
 /*
 const request = require('request')
@@ -44,6 +44,6 @@ app.get("/" , function(req , res){
   res.send("Hello from nodejs and express");
 });
 
-app.listen(port, () => {
+app.listen(port, function() {
   console.log(`API REST running in http://localhost:${port}`)
-})
+});
