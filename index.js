@@ -40,8 +40,8 @@ app.get('/api/geolocationByAddresss/:address' , (req, res) => {
 })
 //geolocationByAddresss
 
-app.get('/api/hola' , (req, res) => {
-  res.status(200).send({message : 'ok'})
+app.get('/' , (req, res) => {
+  res.status(200).send({message : 'Welcome to merca-challenge-api2'})
 })
 
 
