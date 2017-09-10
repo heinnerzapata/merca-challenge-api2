@@ -7,8 +7,8 @@ var config = require('./config');
 
 var port = process.env.PORT || 3002;
 
-app.use(bodyParser.urlencoded({ extended : false }))
-app.use(bodyParser.json())
+//app.use(bodyParser.urlencoded({ extended : false }))
+//app.use(bodyParser.json())
 
 app.get("/" , function(req , res){
   res.send("Hello from nodejs and express");
