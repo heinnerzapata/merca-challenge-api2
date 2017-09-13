@@ -32,6 +32,20 @@ app.get('/api/geolocationByAddresss/:address' , (req, res) => {
 })
 //geolocationByAddresss
 
+// getDistanceTwoPoints
+app.get('/api/getDistanceTwoPoints/:address1/:address2', (req , res) => {
+  console.log('requerimiento distancia ' + req.params.address1 + ' - ' + req.params.address2 )
+  googleServices.getDistanceTwoPoints(req.params.address1,req.params.address2)
+                .then(function(data){
+                  res.status(200).send({data : data})
+                })
+                .catch(function(err){
+                  res.status(200).send({data : err})
+                })
+})
+// getDistanceTwoPoints
+
+
 //uploadFiles
 
 const upload = multer({ dest: 'uploads/' })
